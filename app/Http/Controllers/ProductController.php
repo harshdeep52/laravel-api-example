@@ -10,7 +10,9 @@ class ProductController extends Controller
 {
     function index()
     {
-        $productList = product::all();
+        // $productList = product::all();
+        $perPage = 10;
+        $productList = product::paginate($perPage);
         if ($productList) {
             return response()->json(['status' => true, 'products' => $productList, 'code' => 200]);
         } else {
